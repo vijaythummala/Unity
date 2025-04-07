@@ -42,9 +42,8 @@ COPY front-end/package.json ./package.json
 COPY front-end/package-lock.json ./package-lock.json
 COPY front-end ./front-end
 
-# Install dependencies and build the front-end
+# Install dependencies
 RUN npm install
-RUN npm run dev
 
 # Stage 3: Create the final image
 FROM openjdk:17-jdk-slim
@@ -61,11 +60,18 @@ COPY --from=backend-build /app/back-end/payment_service/target/payment-service-0
 COPY --from=backend-build /app/back-end/transaction_service/target/transaction-service-0.0.1-SNAPSHOT.jar ./transaction-service.jar
 COPY --from=backend-build /app/back-end/user-service/target/user-service-0.0.1-SNAPSHOT.jar ./user-service.jar
 
-# Copy the built front-end files
-COPY --from=frontend-build /app/front-end/build ./front-end
+# Copy the front-end source code
+COPY --from=frontend-build /app/front-end ./front-end
 
 # Expose ports for the back-end and front-end
 EXPOSE 8080 3000
 
 # Command to run the back-end and front-end
-CMD ["sh", "-c", "java -jar /app/account-service.jar & java -jar /app/eurekaserver.jar & npx serve -s /app/front-end -l 3000"]
+CMD ["sh", "-c", "java -jar /app/api-gateway.jar & \
+                   java -jar /app/eurekaserver.jar & \
+                   java -jar /app/account-service.jar & \
+                   java -jar /app/notification-service.jar & \
+                   java -jar /app/payment-service.jar & \
+                   java -jar /app/transaction-service.jar & \
+                   java -jar /app/user-service.jar & \
+                   cd /app/front-end && npm run dev"]
