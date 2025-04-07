@@ -48,6 +48,12 @@ RUN npm install
 # Stage 3: Create the final image
 FROM openjdk:17-jdk-slim
 
+# Install Node.js and npm in the final stage
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Set working directory for the final image
 WORKDIR /app
 
