@@ -112,12 +112,6 @@
    			<groupId>org.springframework.kafka</groupId>
    			<artifactId>spring-kafka</artifactId>
 		</dependency>
-
-        <dependency>
-            <groupId>com.unity</groupId>
-            <artifactId>core_service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <!-- Dependency Management for Spring Cloud -->
