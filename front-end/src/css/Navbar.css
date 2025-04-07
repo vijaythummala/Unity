@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar {
+  @apply bg-blue-500 text-white py-4 shadow-lg;
+}
+
+.navbar-container {
+  @apply flex justify-between items-center px-6;
+}
+
+.navbar-brand {
+  @apply text-2xl font-bold;
+}
+
+.navbar-links {
+  @apply flex space-x-6;
+}
+
+.navbar-links li {
+  @apply text-lg hover:underline cursor-pointer;
+}
+
+.logout-btn {
+  @apply bg-red-500 px-4 py-2 rounded-md font-semibold hover:bg-red-700 transition;
+}

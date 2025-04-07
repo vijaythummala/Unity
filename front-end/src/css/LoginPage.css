@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login-container {
+  @apply min-h-screen bg-gray-100 flex items-center justify-center;
+}
+
+.login-box {
+  @apply w-full max-w-md bg-white p-8 rounded-lg shadow-lg;
+}
+
+.login-heading {
+  @apply text-2xl font-bold text-gray-800 mb-4 text-center;
+}
+
+.form-label {
+  @apply block font-medium text-gray-700 mb-1;
+}
+
+.login-input {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg 
+           focus:outline-none focus:ring-2 focus:ring-blue-500 
+           transition;
+}
+
+.login-btn {
+  @apply w-full bg-blue-500 text-white py-2 rounded-lg font-semibold 
+           hover:bg-blue-700 transition;
+}
+
+.login-error {
+  @apply text-red-600 text-sm text-center mb-3;
+}
+
+.login-link {
+  @apply text-blue-500 underline cursor-pointer hover:text-blue-700 transition;
+}

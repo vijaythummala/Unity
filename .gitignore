@@ -1,0 +1,14 @@
+front-end/node_modules/
+.vscode
+.metadata
+back-end/**/.project
+back-end/**/.classpath
+back-end/**/.settings
+back-end/**/application.properties
+back-end/**/target
+back-end/**/*.log
+credentials.properties
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
