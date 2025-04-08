@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @EnableEurekaServer
-@PropertySource("file:${CREDENTIALS_FILE_PATH}")
+// @PropertySource("file:${CREDENTIALS_FILE_PATH}")
 public class EurekaserverApplication {
 
 	public static void main(String[] args) {

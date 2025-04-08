@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //@EnableJpaRepositories(basePackages = {"com.unity"})
 //@ComponentScan(basePackages = {"com.unity.account_service.client"})
 //@EntityScan(basePackages = {"com.unity"})
-@PropertySource("file:${CREDENTIALS_FILE_PATH}")
+// @PropertySource("file:${CREDENTIALS_FILE_PATH}")
 public class AccountServiceApplication {
 
 	public static void main(String[] args) {
