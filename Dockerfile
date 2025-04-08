@@ -6,7 +6,38 @@ FROM maven:3.9.4-eclipse-temurin-17 AS backend-build
 # Set working directory for the back-end
 WORKDIR /app
 
-# Copy the back-end source code
+# Copy only the pom.xml files to cache dependencies
+COPY back-end/account_service/pom.xml ./back-end/account_service/pom.xml
+COPY back-end/api-gateway/pom.xml ./back-end/api-gateway/pom.xml
+COPY back-end/eurekaserver/pom.xml ./back-end/eurekaserver/pom.xml
+COPY back-end/notification_service/pom.xml ./back-end/notification_service/pom.xml
+COPY back-end/payment_service/pom.xml ./back-end/payment_service/pom.xml
+COPY back-end/transaction_service/pom.xml ./back-end/transaction_service/pom.xml
+COPY back-end/user-service/pom.xml ./back-end/user-service/pom.xml
+
+# # Run Maven dependency resolution to cache dependencies
+# WORKDIR /app/back-end/account_service
+# RUN mvn dependency:go-offline -B
+
+# WORKDIR /app/back-end/api-gateway
+# RUN mvn dependency:go-offline -B
+
+# WORKDIR /app/back-end/eurekaserver
+# RUN mvn dependency:go-offline -B
+
+# WORKDIR /app/back-end/notification_service
+# RUN mvn dependency:go-offline -B
+
+# WORKDIR /app/back-end/payment_service
+# RUN mvn dependency:go-offline -B
+
+# WORKDIR /app/back-end/transaction_service
+# RUN mvn dependency:go-offline -B
+
+# WORKDIR /app/back-end/user-service
+# RUN mvn dependency:go-offline -B
+
+# Copy the full source code after caching dependencies
 COPY back-end ./back-end
 
 # Build each back-end service
@@ -32,19 +63,24 @@ WORKDIR /app/back-end/user-service
 RUN mvn clean package -DskipTests
 
 # Stage 2: Build the front-end (React.js)
-FROM node:18 AS frontend-build
+FROM node:20 AS frontend-build
 
 # Set working directory for the front-end
 WORKDIR /app/front-end
 
-# Copy the front-end source code, including server.js
+# Copy the front-end source code, including src folder
+COPY front-end/index.html ./index.html
 COPY front-end/package.json ./package.json
 COPY front-end/package-lock.json ./package-lock.json
 COPY front-end/server.js ./server.js
+COPY front-end/src ./src
 COPY front-end ./front-end
 
 # Install dependencies
 RUN npm install
+
+# Build the React app
+RUN npm run build
 
 # Stage 3: Create the final image
 FROM openjdk:17-jdk-slim
