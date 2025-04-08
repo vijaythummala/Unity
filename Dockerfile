@@ -80,4 +80,4 @@ CMD ["sh", "-c", "java -jar /app/api-gateway.jar & \
                    java -jar /app/payment-service.jar & \
                    java -jar /app/transaction-service.jar & \
                    java -jar /app/user-service.jar & \
-                   cd /app/front-end && npm run dev"]
+                   cd /app/front-end && npm run start"]
