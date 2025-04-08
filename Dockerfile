@@ -37,9 +37,10 @@ FROM node:18 AS frontend-build
 # Set working directory for the front-end
 WORKDIR /app/front-end
 
-# Copy the front-end source code
+# Copy the front-end source code, including server.js
 COPY front-end/package.json ./package.json
 COPY front-end/package-lock.json ./package-lock.json
+COPY front-end/server.js ./server.js
 COPY front-end ./front-end
 
 # Install dependencies
