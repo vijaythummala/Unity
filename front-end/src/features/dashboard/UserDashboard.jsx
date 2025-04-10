@@ -196,7 +196,7 @@ const UserDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <Navbar />
+      {/* <Navbar /> */}
 
       {notification && (
         <div className="notification-popup">
