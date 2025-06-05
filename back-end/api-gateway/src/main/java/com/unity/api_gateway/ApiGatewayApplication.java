@@ -1,14 +1,14 @@
 package com.unity.api_gateway;
 
+import com.unity.core_service.config.DefaultDataSourceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-// @PropertySource("file:${CREDENTIALS_FILE_PATH}")
+@Import(DefaultDataSourceConfig.class)
 public class ApiGatewayApplication {
 
 	public static void main(String[] args) {

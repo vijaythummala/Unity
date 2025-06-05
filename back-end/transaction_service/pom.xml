@@ -50,6 +50,13 @@
             <scope>runtime</scope>
         </dependency>
 
+         <!-- PostgreSQL Database Connector -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Lombok (for reducing boilerplate code) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -99,6 +106,12 @@
    			<groupId>org.springframework.kafka</groupId>
    			<artifactId>spring-kafka</artifactId>
 		</dependency>
+
+        <dependency>
+            <groupId>com.unity</groupId>
+            <artifactId>core_service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <!-- Dependency Management for Spring Cloud -->

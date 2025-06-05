@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<artifactId>payment-service</artifactId>
-	<name>payment-service</name>
-	<version>0.0.1-SNAPSHOT</version>
-	<description>Payment Service</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
-	<properties>
-		<java.version>17</java.version>
-         <spring-cloud.version>2024.0.0</spring-cloud.version>
-	</properties>
-	<dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+    <artifactId>payment-service</artifactId>
+    <name>payment-service</name>
+    <version>0.0.1-SNAPSHOT</version>
+    <description>Payment Service</description>
+    <url />
+    <licenses>
+        <license />
+    </licenses>
+    <developers>
+        <developer />
+    </developers>
+    <scm>
+        <connection />
+        <developerConnection />
+        <tag />
+        <url />
+    </scm>
+    <properties>
+        <java.version>17</java.version>
+        <spring-cloud.version>2024.0.0</spring-cloud.version>
+    </properties>
+    <dependencies>
         <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -40,7 +41,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            </dependency>
+        </dependency>
 
         <!-- MySQL Database Connector -->
         <dependency>
@@ -84,10 +85,10 @@
         </dependency>
 
         <!-- Eureka Client for Service Discovery -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -102,9 +103,30 @@
         </dependency>
 
         <dependency>
-   			<groupId>org.springframework.kafka</groupId>
-   			<artifactId>spring-kafka</artifactId>
-		</dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.unity</groupId>
+            <artifactId>core_service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- MapStruct Core -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.5.Final</version>
+        </dependency>
+
+        <!-- Annotation Processor for MapStruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.5.Final</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <!-- Dependency Management for Spring Cloud -->
@@ -133,7 +155,14 @@
                             <artifactId>lombok</artifactId>
                             <version>1.18.28</version> <!-- Explicitly specify the version -->
                         </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>1.5.5.Final</version>
+                        </path>
                     </annotationProcessorPaths>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
 

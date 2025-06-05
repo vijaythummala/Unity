@@ -13,7 +13,7 @@ public class NotificationConsumer {
     @Autowired
     private NotificationService notificationService;
 
-    @KafkaListener(topics = "notification-topic", groupId = "notification-group")
+    // @KafkaListener(topics = "notification-topic", groupId = "notification-group")
     public void consume(NotificationDTO event) {
         try{
             notificationService.saveNotification(event);

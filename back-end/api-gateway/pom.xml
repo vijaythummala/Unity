@@ -84,6 +84,13 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+         <!-- PostgreSQL Database Connector -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
 
         <!-- Spring Boot Test -->
         <dependency>
@@ -96,6 +103,12 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.unity</groupId>
+            <artifactId>core_service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
