@@ -7,6 +7,7 @@ FROM maven:3.9.4-eclipse-temurin-17 AS backend-build
 WORKDIR /app
 
 # Copy only the pom.xml files to cache dependencies
+COPY back-end/core_service/pom.xml ./back-end/core_service/pom.xml
 COPY back-end/account_service/pom.xml ./back-end/account_service/pom.xml
 COPY back-end/api-gateway/pom.xml ./back-end/api-gateway/pom.xml
 COPY back-end/eurekaserver/pom.xml ./back-end/eurekaserver/pom.xml
@@ -41,6 +42,10 @@ COPY back-end/user-service/pom.xml ./back-end/user-service/pom.xml
 COPY back-end ./back-end
 
 # Build each back-end service
+
+WORKDIR /app/back-end/core_service
+RUN mvn clean package -DskipTests
+
 WORKDIR /app/back-end/account_service
 RUN mvn clean package -DskipTests
 
