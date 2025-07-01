@@ -16,56 +16,33 @@ COPY back-end/payment_service/pom.xml ./back-end/payment_service/pom.xml
 COPY back-end/transaction_service/pom.xml ./back-end/transaction_service/pom.xml
 COPY back-end/user-service/pom.xml ./back-end/user-service/pom.xml
 
-# # Run Maven dependency resolution to cache dependencies
-# WORKDIR /app/back-end/account_service
-# RUN mvn dependency:go-offline -B
-
-# WORKDIR /app/back-end/api-gateway
-# RUN mvn dependency:go-offline -B
-
-# WORKDIR /app/back-end/eurekaserver
-# RUN mvn dependency:go-offline -B
-
-# WORKDIR /app/back-end/notification_service
-# RUN mvn dependency:go-offline -B
-
-# WORKDIR /app/back-end/payment_service
-# RUN mvn dependency:go-offline -B
-
-# WORKDIR /app/back-end/transaction_service
-# RUN mvn dependency:go-offline -B
-
-# WORKDIR /app/back-end/user-service
-# RUN mvn dependency:go-offline -B
-
-# Copy the full source code after caching dependencies
 COPY back-end ./back-end
 
 # Build each back-end service
 
 WORKDIR /app/back-end/core_service
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 WORKDIR /app/back-end/account_service
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 WORKDIR /app/back-end/api-gateway
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 WORKDIR /app/back-end/eurekaserver
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 WORKDIR /app/back-end/notification_service
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 WORKDIR /app/back-end/payment_service
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 WORKDIR /app/back-end/transaction_service
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 WORKDIR /app/back-end/user-service
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 # Stage 2: Build the front-end (React.js)
 FROM node:20 AS frontend-build
