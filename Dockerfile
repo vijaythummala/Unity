@@ -123,4 +123,6 @@ COPY --from=frontend-build /app/package*.json ./
 # Install only production dependencies
 EXPOSE 10000
 
+RUN npm install
+
 CMD ["npm", "run", "start"]
