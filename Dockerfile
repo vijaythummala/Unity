@@ -121,8 +121,6 @@ COPY --from=frontend-build /app/server.js ./
 COPY --from=frontend-build /app/package*.json ./
 
 # Install only production dependencies
-RUN npm ci --only=production
-
 EXPOSE 10000
 
 CMD ["npm", "run", "start"]
