@@ -1,12 +1,16 @@
 package com.unity.payment_service.controller;
 
+import com.unity.payment_service.agent.PaymentFileParser;
 import com.unity.payment_service.dto.PaymentDTO;
+import com.unity.payment_service.dto.PaymentInfoDTO;
 import com.unity.payment_service.dto.ScheduledPaymentDTO;
 import com.unity.payment_service.service.PaymentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,6 +20,10 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
+
+    @Autowired
+    private PaymentFileParser paymentFileParser;
+
 
     @PostMapping("/createPayment")
     public ResponseEntity<String> createPayment(@RequestBody PaymentDTO paymentDTO) {
@@ -59,5 +67,16 @@ public class PaymentController {
 
         String response = paymentService.deleteScheduledPayment(userId, bankAccountId, paymentId);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadPaymentFile(@RequestParam("file") MultipartFile file) {
+        try {
+            List<PaymentInfoDTO> paymentDTOs = paymentFileParser.parse(file);
+            paymentService.processPayments(paymentDTOs);
+            return ResponseEntity.ok("File processed successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
+        }
     }
 }
