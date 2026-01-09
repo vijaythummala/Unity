@@ -51,7 +51,7 @@ COPY front-end/ ./
 RUN npm run build
 
 # Stage 3: Create the final image
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-slim
 
 # Install Node.js
 RUN apt-get update && apt-get install -y curl && \
