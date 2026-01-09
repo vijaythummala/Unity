@@ -51,7 +51,7 @@ COPY front-end/ ./
 RUN npm run build
 
 # Stage 3: Create the final image
-FROM eclipse-temurin:17-jdk-slim
+FROM eclipse-temurin:17.0.17_10-jdk-alpine
 
 # Install Node.js
 RUN apt-get update && apt-get install -y curl && \
